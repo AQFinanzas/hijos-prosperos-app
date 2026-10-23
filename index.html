@@ -30,23 +30,31 @@
     <button class="boton-saltar" id="btn-saltar">Saltar</button>
   </section>
 
-  <!-- Registro del niño -->
-  <section id="pantalla-registro" class="pantalla" aria-label="Crear perfil">
-    <div class="contenedor">
+  <!-- Registro en 2 pasos: papá o mamá, y luego el niño -->
+  <section id="pantalla-registro" class="pantalla pantalla-registro" aria-label="Crear cuenta">
+    <div class="contenedor registro">
       <div class="registro-cabeza">
         <img src="assets/img/logo-hp.png" alt="Hijos Prósperos" class="logo-chico">
+        <div class="pasos-registro" aria-hidden="true"><span class="activo" id="punto-1"></span><span id="punto-2"></span></div>
       </div>
-      <h1 class="titulo">Crea el perfil de tu hijo</h1>
-      <p class="nota">Esta parte la llena papá o mamá.</p>
-      <form id="form-registro" class="formulario" novalidate>
-        <label class="campo">
-          <span>Nombre del niño o la niña</span>
-          <input type="text" id="input-nombre" maxlength="20" autocomplete="off" required>
-        </label>
+
+      <form id="form-familia" class="formulario" novalidate>
+        <h1 class="titulo">Datos de papá o mamá</h1>
+        <label class="campo"><span>Tu nombre</span><input type="text" id="input-adulto" maxlength="40" autocomplete="name" required></label>
+        <label class="campo"><span>Tu correo</span><input type="email" id="input-correo" maxlength="80" autocomplete="email" inputmode="email" required></label>
+        <label class="campo"><span>Tu WhatsApp (opcional)</span><input type="tel" id="input-whatsapp" maxlength="20" autocomplete="tel" inputmode="tel"></label>
+        <label class="acepto"><input type="checkbox" id="input-acepto"><span>Soy mayor de edad y autorizo a mi hijo a usar la app.</span></label>
+        <p class="error" id="error-familia" role="alert"></p>
+        <button class="boton boton-principal boton-ancho" type="submit">Seguir</button>
+      </form>
+
+      <form id="form-registro" class="formulario" novalidate hidden>
+        <h1 class="titulo">Perfil de tu hijo</h1>
+        <label class="campo"><span>Nombre del niño o la niña</span><input type="text" id="input-nombre" maxlength="20" autocomplete="off" required></label>
         <fieldset class="campo">
           <legend>Edad</legend>
           <div class="opciones-edad">
-            <label class="opcion-edad"><input type="radio" name="edad" value="chico" required><span><strong>5 a 7 años</strong><small>Más dibujos y voz</small></span></label>
+            <label class="opcion-edad"><input type="radio" name="edad" value="chico" required><span><strong>5 a 7 años</strong><small>Con voz y dibujos</small></span></label>
             <label class="opcion-edad"><input type="radio" name="edad" value="grande"><span><strong>8 a 13 años</strong><small>Con números y retos</small></span></label>
           </div>
         </fieldset>
@@ -55,7 +63,10 @@
           <div class="opciones-avatar" id="opciones-avatar"></div>
         </fieldset>
         <p class="error" id="error-registro" role="alert"></p>
-        <button class="boton boton-principal boton-ancho" type="submit">Crear perfil</button>
+        <div class="fila-botones">
+          <button class="boton boton-secundario" type="button" id="btn-atras-registro">Atrás</button>
+          <button class="boton boton-principal" type="submit">Crear perfil</button>
+        </div>
       </form>
     </div>
   </section>

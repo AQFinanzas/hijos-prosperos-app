@@ -9,6 +9,7 @@
   /* ---------- Guardado del progreso ---------- */
   const CLAVE = "hp-app-v1";
   const ESTADO_INICIAL = {
+    familia: null,         // { nombre, correo, whatsapp } de papá o mamá
     perfil: null,          // { nombre, edad: "chico" | "grande", avatar }
     monedas: 0,
     racha: 0,
@@ -82,17 +83,39 @@
       });
     } catch (e) { /* sin sonido */ }
   }
+  // Voz de Dinerito: usa la voz en español del celular, tablet o computadora.
+  // Prefiere voces latinoamericanas y las más naturales (Google, Microsoft "Natural", Siri).
+  function elegirVoz() {
+    const voces = speechSynthesis.getVoices().filter((v) => v.lang && v.lang.toLowerCase().startsWith("es"));
+    const puntos = (v) => {
+      const l = v.lang.toLowerCase(), n = v.name.toLowerCase();
+      let p = 0;
+      if (/(419|mx|us|co|ar|cl|pe|ve)/.test(l)) p += 4;
+      if (/natural|neural|google|siri|premium|enhanced|mejorad/.test(n)) p += 3;
+      if (l === "es-es") p += 1;
+      return p;
+    };
+    return voces.sort((a, b) => puntos(b) - puntos(a))[0];
+  }
   function hablar(t) {
     try {
       if (!("speechSynthesis" in window)) return;
       speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(t);
-      u.lang = "es-419"; u.rate = 0.95; u.pitch = 1.15;
-      const voz = speechSynthesis.getVoices().find((v) => v.lang && v.lang.startsWith("es"));
-      if (voz) u.voice = voz;
+      const voz = elegirVoz();
+      if (voz) { u.voice = voz; u.lang = voz.lang; } else u.lang = "es-419";
+      u.rate = 0.95; u.pitch = 1.1;
       speechSynthesis.speak(u);
     } catch (e) { /* sin voz */ }
   }
+  try { speechSynthesis.onvoiceschanged = () => {}; } catch (e) {}
+  const ICONO_AUDIO = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>';
+  const botonAudio = (t, etiqueta = "Escuchar") =>
+    `<button class="boton-audio" type="button" data-texto="${esc(t)}">${ICONO_AUDIO}<span>${etiqueta}</span></button>`;
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".boton-audio");
+    if (b) hablar(b.dataset.texto);
+  });
 
   /* ---------- Navegación entre pantallas ---------- */
   function ir(nombre) {
@@ -134,6 +157,34 @@
       caja.querySelectorAll(".avatar-opcion").forEach((x) => x.setAttribute("aria-pressed", "false"));
       b.setAttribute("aria-pressed", "true"); avatar = b.dataset.color;
     });
+    const paso = (n) => {
+      $("#form-familia").hidden = n !== 1;
+      $("#form-registro").hidden = n !== 2;
+      $("#punto-1").classList.toggle("activo", n === 1);
+      $("#punto-2").classList.toggle("activo", n === 2);
+      (n === 1 ? $("#input-adulto") : $("#input-nombre")).focus({ preventScroll: true });
+    };
+    if (estado.familia) {
+      $("#input-adulto").value = estado.familia.nombre;
+      $("#input-correo").value = estado.familia.correo;
+      $("#input-whatsapp").value = estado.familia.whatsapp || "";
+      $("#input-acepto").checked = true;
+    }
+    $("#form-familia").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nombre = $("#input-adulto").value.trim();
+      const correo = $("#input-correo").value.trim();
+      const whatsapp = $("#input-whatsapp").value.trim();
+      const err = $("#error-familia");
+      if (!nombre) return (err.textContent = "Escribe tu nombre.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo)) return (err.textContent = "Escribe un correo válido, por ejemplo nombre@gmail.com.");
+      if (!$("#input-acepto").checked) return (err.textContent = "Marca la casilla para continuar.");
+      err.textContent = "";
+      estado.familia = { nombre, correo, whatsapp };
+      guardar();
+      paso(2);
+    });
+    $("#btn-atras-registro").addEventListener("click", () => paso(1));
     $("#form-registro").addEventListener("submit", (e) => {
       e.preventDefault();
       const nombre = $("#input-nombre").value.trim();
@@ -144,6 +195,7 @@
       guardar();
       ir("mapa");
     });
+    if (estado.familia && !estado.perfil) paso(2);
   }
 
   /* ---------- Mapa ---------- */
@@ -240,11 +292,10 @@
         <div class="escena">
           <div class="globo">${esc(t)}</div>
           ${dinerito(mision.paso === 0 ? d.pose : mision.paso === 1 ? "feliz" : "pensando", 170)}
-          <button class="boton-escuchar" id="btn-escuchar">Escuchar a Dinerito</button>
+          ${botonAudio(t, "Escuchar a Dinerito")}
         </div>
         <div class="empuje"></div>
         <div class="botones"><button class="boton boton-principal boton-ancho" id="btn-seguir">Seguir</button></div>`;
-      $("#btn-escuchar").onclick = () => hablar(t);
       if (chico()) hablar(t);
       $("#btn-seguir").onclick = () => {
         if (mision.paso < d.pasos.length - 1) mision.paso++;
@@ -255,11 +306,12 @@
     }
     if (mision.fase === "actividad") {
       const a = d.actividad;
-      cuerpo.innerHTML = `<p class="mision-dia">Día ${d.dia}: ${esc(d.titulo)}</p><h2 class="instruccion">${esc(a.instruccion)}</h2><div id="actividad"></div>
+      cuerpo.innerHTML = `<p class="mision-dia">Día ${d.dia}: ${esc(d.titulo)}</p><h2 class="instruccion">${esc(a.instruccion)}</h2><div class="centrar">${botonAudio(a.instruccion)}</div><div id="actividad"></div>
         <div class="empuje"></div><div class="botones"><button class="boton boton-principal boton-ancho" id="btn-seguir" disabled>Seguir</button></div>`;
       const listo = () => { const b = $("#btn-seguir"); b.disabled = false; b.focus(); };
       $("#btn-seguir").onclick = () => { mision.fase = "familia"; pintarMision(); };
       ACTIVIDADES[a.tipo](a, $("#actividad"), listo);
+      if (chico()) hablar(a.instruccion);
       return;
     }
     // Familia
@@ -270,12 +322,14 @@
         <h3>Misión en familia</h3>
         <p>${esc(d.familia)}</p>
         <p class="extra">Si la hacen juntos, ganas el doble de monedas.</p>
+        ${botonAudio(d.familia + " Si la hacen juntos, ganas el doble de monedas.")}
       </div>
       <div class="empuje"></div>
       <div class="botones">
         <button class="boton boton-principal boton-ancho" id="btn-familia">La hicimos en familia</button>
         <button class="boton boton-secundario boton-ancho" id="btn-despues">La hacemos después</button>
       </div>`;
+    if (chico()) hablar(d.familia);
     $("#btn-familia").onclick = () => terminarMision(true);
     $("#btn-despues").onclick = () => terminarMision(false);
   }
@@ -561,6 +615,7 @@
       ${destinoPadres === "membresia" ? membresia : ""}
       <div class="bloque">
         <h2>Avance de ${esc(estado.perfil ? estado.perfil.nombre : "su hijo")}</h2>
+        ${estado.familia ? `<p>Cuenta de ${esc(estado.familia.nombre)} (${esc(estado.familia.correo)}${estado.familia.whatsapp ? ", " + esc(estado.familia.whatsapp) : ""}).</p>` : ""}
         <p>${hechos} de 7 días terminados. ${estado.monedas} monedas, racha de ${estado.racha} ${estado.racha === 1 ? "día" : "días"}.</p>
         ${estado.meta ? `<p>Meta: ${esc(estado.meta.nombre)} de ${estado.meta.precio} dólares. Su hijo ahorra ${estado.meta.hijo} y usted ${estado.meta.padre} al mes.</p>` : ""}
       </div>

@@ -14,7 +14,7 @@ Esta primera versión (prototipo) tiene los **7 días gratis** de la Isla del Di
 ## Cómo se usa
 
 1. Abrir la dirección en el celular, la tablet o la computadora.
-2. Papá o mamá crea el perfil del niño: nombre, edad (5–7 o 8–13) y color.
+2. Papá o mamá escribe sus datos (nombre, correo y WhatsApp opcional) y luego crea el perfil del niño: nombre, edad (5–7 o 8–13) y color.
 3. El niño juega una misión por día desde el mapa.
 4. El botón **Papá y mamá** abre el panel de padres. Pide resolver una multiplicación para que el niño no entre solo.
 
@@ -39,7 +39,9 @@ Es una página web normal (HTML, CSS y JavaScript), sin programas extra que inst
 | `assets/` | Logo, patrón de fondo, íconos y video de intro |
 | `docs/` | Decisiones, marca, mapa de niveles y cuentas |
 
-**Dónde se guarda el progreso:** por ahora, en el mismo dispositivo (localStorage). Si se borra el navegador, se pierde. La próxima versión lo guardará en una base de datos con cuenta de familia.
+**Dónde se guarda el progreso y los datos de la familia:** por ahora, en el mismo dispositivo (localStorage). Todavía no se envían a ninguna base de datos. La próxima versión los guardará en una base de datos con cuenta de familia y los correos llegarán a la lista de Hijos Prósperos.
+
+**Audio:** Dinerito lee los textos con la voz en español del dispositivo (función gratuita del navegador). Más adelante se puede reemplazar por audios grabados o una voz de IA más natural.
 
 ## Cómo se publica un cambio
 
