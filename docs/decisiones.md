@@ -4,6 +4,8 @@ Lo que se decidió, cuándo y por qué. Lo más reciente va arriba.
 
 ## 23 de octubre de 2026
 
+- **Embudo elegido: opción A, sin tarjeta al inicio.** Landing de registro para papás (nombre, correo, WhatsApp) → 7 días gratis en la app sin tarjeta → entre el día 5 y el 7, invitación a suscribirse en Hotmart → pago con tarjeta o PayPal y cobro automático mensual. Más adelante se probará la opción B (prueba gratis de Hotmart con tarjeta desde el inicio) con una parte del tráfico.
+
 - **Todos los cobros de la membresía son automáticos.** No habrá pagos manuales (Pago Móvil, Zelle, Binance por transferencia). Se arranca con Hotmart: plan de suscripción con 7 días de prueba gratis y cobro automático con tarjeta o PayPal. En Venezuela entra quien tenga PayPal o tarjeta internacional (crédito, débito o tarjeta virtual en dólares). Stripe se evalúa cuando haya volumen, porque pide una empresa en EE. UU.
 
 - **Sin video de intro.** La app abre directo con Dinerito animado e interactivo.
