@@ -19,10 +19,9 @@ Los tres primeros salen del logo oficial. El oro se agregó para las monedas.
 
 ## Dinerito
 
-Moneda dorada con borde naranja, gorra azul cielo, brazos y piernas azul marino. Tiene 4 poses: feliz, celebrando, pensando y saludando. Está dibujado en código en `js/dinerito.js`, así que se ve nítido en cualquier pantalla. Si existe un dibujo oficial de Dinerito, se puede reemplazar ahí.
+Moneda dorada con borde naranja, gorra azul cielo, brazos y piernas azul marino. Tiene 4 poses: feliz, celebrando, pensando y saludando. En la bienvenida está animado: flota, parpadea, saluda y salta al tocarlo. Está dibujado en código en `js/dinerito.js`, así que se ve nítido en cualquier pantalla. Si existe un dibujo oficial de Dinerito, se puede reemplazar ahí.
 
 ## Archivos
 
 - `assets/img/logo-hp.png`: logo a color.
 - `assets/img/patron-azul.png`: patrón del isotipo sobre azul marino.
-- `assets/video/intro.mp4`: video de intro (7 segundos).

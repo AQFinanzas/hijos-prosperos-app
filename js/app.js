@@ -129,17 +129,29 @@
   document.querySelectorAll("[data-volver]").forEach((b) => b.addEventListener("click", () => ir(b.dataset.volver)));
 
   /* ---------- Bienvenida ---------- */
+  const SALUDOS = [
+    "¡Hola! Soy Dinerito.",
+    "¡Vamos a ganar, guardar y hacer crecer el dinero!",
+    "¡Me encanta que estés aquí!",
+    "¿Listo para tu primera misión?",
+  ];
   function iniciarBienvenida() {
-    const video = $("#video-intro");
-    const final = $("#bienvenida-final");
-    $("#bienvenida-dinerito").innerHTML = dinerito("saludando", 170);
-    const mostrarFinal = () => { final.classList.add("visible"); $("#btn-saltar").hidden = true; };
-    video.addEventListener("ended", mostrarFinal);
-    video.addEventListener("error", mostrarFinal);
-    $("#btn-saltar").addEventListener("click", () => { video.pause(); mostrarFinal(); });
-    const p = video.play();
-    if (p && p.catch) p.catch(mostrarFinal);
-    setTimeout(mostrarFinal, 9000);
+    const caja = $("#bienvenida-dinerito");
+    const globo = $("#globo-saludo");
+    caja.innerHTML = dinerito("saludando", 180);
+    let i = 0, ocupado = false;
+    caja.addEventListener("click", () => {
+      if (ocupado) return;
+      ocupado = true;
+      const frase = SALUDOS[i % SALUDOS.length]; i++;
+      caja.innerHTML = dinerito("celebrando", 180);
+      caja.classList.remove("saltando"); void caja.offsetWidth; caja.classList.add("saltando");
+      globo.textContent = frase;
+      globo.classList.remove("visible"); void globo.offsetWidth; globo.classList.add("visible");
+      sonar("bien");
+      hablar(frase);
+      setTimeout(() => { caja.innerHTML = dinerito("saludando", 180); caja.classList.remove("saltando"); ocupado = false; }, 1100);
+    });
     $("#btn-empezar").addEventListener("click", () => {
       estado.vioIntro = true; guardar();
       ir(estado.perfil ? "mapa" : "registro");

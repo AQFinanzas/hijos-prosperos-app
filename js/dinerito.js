@@ -34,8 +34,10 @@ function dinerito(pose = "feliz", tam = 160) {
     saludando: `
       <path d="M30 120 q-10 6 -13 18" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
       <circle class="extremidad" cx="17" cy="138" r="8" fill="${c.navy}"/>
-      <path d="M170 100 q12 -10 8 -48" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <g class="dinerito-mano"><circle class="extremidad" cx="178" cy="52" r="9" fill="${c.navy}"/></g>`,
+      <g class="brazo-saludo">
+        <path d="M170 100 q12 -10 8 -48" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle class="extremidad" cx="178" cy="52" r="9" fill="${c.navy}"/>
+      </g>`,
   }[pose] || "";
 
   const ojos =
@@ -56,7 +58,7 @@ function dinerito(pose = "feliz", tam = 160) {
       : `<path d="M84 118 q16 16 32 0" stroke="${c.navy}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
 
   return `
-  <svg class="dinerito dinerito-${pose}" width="${tam}" height="${tam * 1.1}" viewBox="0 0 200 220" role="img" aria-label="Dinerito">
+  <svg class="dinerito dinerito-${pose}" data-pose="${pose}" width="${tam}" height="${tam * 1.1}" viewBox="0 0 200 220" role="img" aria-label="Dinerito">
     <path d="M78 176 v22 h-12" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <path d="M122 176 v22 h12" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="100" cy="104" r="76" fill="${c.borde}"/>
@@ -65,7 +67,7 @@ function dinerito(pose = "feliz", tam = 160) {
     <path d="M52 70 a56 56 0 0 1 40 -30" stroke="#fff" stroke-opacity=".6" stroke-width="7" fill="none" stroke-linecap="round"/>
     <path d="M62 46 q38 -44 76 0 z" fill="${c.cielo}"/><rect x="100" y="40" width="50" height="9" rx="4.5" fill="${c.navy}"/><circle cx="100" cy="22" r="6" fill="${c.borde}"/>
     ${brazos}
-    ${ojos}
+    <g class="ojos">${ojos}</g>
     <circle cx="66" cy="114" r="7" fill="${c.mejilla}" opacity=".55"/>
     <circle cx="134" cy="114" r="7" fill="${c.mejilla}" opacity=".55"/>
     ${boca}

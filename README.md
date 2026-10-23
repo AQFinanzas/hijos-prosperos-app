@@ -29,14 +29,14 @@ Es una página web normal (HTML, CSS y JavaScript), sin programas extra que inst
 
 | Archivo | Qué tiene |
 | --- | --- |
-| `index.html` | Las pantallas: bienvenida, registro, mapa, misión, insignias, fin y panel de padres |
+| `index.html` | Las pantallas: bienvenida con Dinerito, registro, mapa, misión, insignias, fin y panel de padres |
 | `css/app.css` | El diseño. Los colores de la marca están al inicio del archivo |
 | `js/contenido.js` | **Todo el texto de las misiones.** Para cambiar una frase, se cambia aquí |
 | `js/app.js` | Cómo funciona: misiones, monedas, racha, insignias y panel de padres |
 | `js/dinerito.js` | El dibujo de Dinerito en sus 4 poses |
 | `sw.js` | Hace que la app abra rápido y funcione sin internet |
 | `manifest.webmanifest` | El nombre y el ícono que se ven al instalarla |
-| `assets/` | Logo, patrón de fondo, íconos y video de intro |
+| `assets/` | Logo, patrón de fondo e íconos |
 | `docs/` | Decisiones, marca, mapa de niveles y cuentas |
 
 **Dónde se guarda el progreso y los datos de la familia:** por ahora, en el mismo dispositivo (localStorage). Todavía no se envían a ninguna base de datos. La próxima versión los guardará en una base de datos con cuenta de familia y los correos llegarán a la lista de Hijos Prósperos.

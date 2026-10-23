@@ -4,6 +4,8 @@ Lo que se decidió, cuándo y por qué. Lo más reciente va arriba.
 
 ## 23 de octubre de 2026
 
+- **Sin video de intro.** La app abre directo con Dinerito animado e interactivo.
+
 - **El registro pide los datos de papá o mamá** (nombre, correo y WhatsApp opcional) antes del perfil del niño. Sirve para tener la lista de familias y para pedir la autorización de un adulto.
 - **Cada paso del registro cabe en la pantalla del celular**, sin tener que bajar.
 - **Audio en todas las explicaciones.** Por ahora con la voz del dispositivo (gratis). Opciones futuras: grabar los audios o usar una voz de IA natural.

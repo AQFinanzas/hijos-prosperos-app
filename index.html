@@ -18,16 +18,15 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-  <!-- Bienvenida: video de intro -->
+  <!-- Bienvenida: Dinerito saluda; si lo tocan, salta y habla -->
   <section id="pantalla-bienvenida" class="pantalla pantalla-oscura activa" aria-label="Bienvenida">
-    <video id="video-intro" src="assets/video/intro.mp4" muted playsinline preload="auto"></video>
-    <div class="bienvenida-final" id="bienvenida-final">
-      <div id="bienvenida-dinerito"></div>
+    <div class="bienvenida-final visible" id="bienvenida-final">
+      <div class="zona-globo"><div class="globo-saludo" id="globo-saludo" aria-live="polite">¡Tócame!</div></div>
+      <button class="dinerito-vivo" id="bienvenida-dinerito" type="button" aria-label="Tocar a Dinerito"></button>
       <h1 class="titulo-grande">¡Hola! Soy Dinerito</h1>
       <p class="texto-claro">Te voy a enseñar a ganar, guardar y hacer crecer tu dinero.</p>
       <button class="boton boton-principal" id="btn-empezar">Empezar</button>
     </div>
-    <button class="boton-saltar" id="btn-saltar">Saltar</button>
   </section>
 
   <!-- Registro en 2 pasos: papá o mamá, y luego el niño -->

@@ -2,6 +2,11 @@
 
 Cada cambio va arriba, con la fecha, qué se hizo y para qué.
 
+## 2026-10-23 — Versión 4
+
+- Se quitó el video de intro.
+- La bienvenida ahora tiene a Dinerito vivo: flota, parpadea y saluda con la mano. Si el niño lo toca, salta, celebra y dice una frase con su voz.
+
 ## 2026-10-23 — Versión 3
 
 - Registro en 2 pasos que caben en la pantalla del celular sin bajar: primero papá o mamá (nombre, correo, WhatsApp opcional y autorización), luego el perfil del niño.

@@ -82,7 +82,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Bienvenida */
 #pantalla-bienvenida { text-align: center; overflow: hidden; }
-#video-intro { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bienvenida-final {
   position: relative;
   min-height: calc(100dvh - var(--arriba) - var(--abajo) - 24px);
@@ -95,10 +94,24 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .bienvenida-final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 45%, rgba(23,11,91,.97) 30%, rgba(23,11,91,.8) 75%); }
 .bienvenida-final > * { position: relative; }
 .bienvenida-final.visible { opacity: 1; pointer-events: auto; }
-.boton-saltar {
-  position: absolute; top: calc(var(--arriba) + 16px); right: 16px;
-  background: rgba(255,255,255,.18); color: var(--blanco); border: 0; border-radius: 999px; padding: 8px 16px;
+/* Dinerito vivo en la bienvenida: flota, parpadea, saluda con la mano y salta al tocarlo */
+.dinerito-vivo { background: none; border: 0; padding: 0; cursor: pointer; border-radius: 50%; }
+.dinerito-vivo .dinerito { animation: flotar 3s ease-in-out infinite; display: block; }
+.dinerito-vivo .brazo-saludo { transform-box: view-box; transform-origin: 170px 100px; animation: saludar 1.4s ease-in-out infinite; }
+.dinerito-vivo .ojos { transform-box: view-box; transform-origin: 100px 94px; animation: parpadear 4s infinite; }
+.dinerito-vivo.saltando .dinerito { animation: saltar .9s cubic-bezier(.3,1.6,.5,1); }
+@keyframes flotar { 50% { transform: translateY(-10px); } }
+@keyframes saludar { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-16deg); } 75% { transform: rotate(14deg); } }
+@keyframes parpadear { 0%, 92%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+@keyframes saltar { 0% { transform: translateY(0) scale(1); } 35% { transform: translateY(-46px) scale(1.08) rotate(-8deg); } 65% { transform: translateY(0) scale(.95, 1.05) rotate(4deg); } 100% { transform: none; } }
+.zona-globo { height: 78px; display: flex; align-items: flex-end; justify-content: center; position: relative; z-index: 2; }
+.globo-saludo {
+  position: relative; background: var(--blanco); color: var(--navy); border-radius: 22px;
+  padding: 10px 18px; font-family: var(--letra-titulo); font-size: 1.15rem; max-width: 26ch; margin-bottom: 6px;
 }
+.globo-saludo::after { content: ""; position: absolute; bottom: -10px; left: 50%; margin-left: -10px; border: 10px solid transparent; border-top-color: var(--blanco); border-bottom: 0; }
+.globo-saludo.visible { animation: aparecer .35s ease-out; }
+@keyframes aparecer { from { transform: scale(.7); opacity: 0; } }
 
 /* Registro: cada paso cabe en la pantalla del celular sin bajar */
 .registro { padding-top: 12px; }
