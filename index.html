@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hijos Prósperos</title>
+  <meta name="description" content="La app de educación financiera de Hijos Prósperos para niños de 5 a 13 años, con Dinerito como guía.">
+  <meta name="theme-color" content="#170B5B">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/img/icono-192.png">
+  <link rel="apple-touch-icon" href="assets/img/icono-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Hijos Prósperos">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <!-- Bienvenida: video de intro -->
+  <section id="pantalla-bienvenida" class="pantalla pantalla-oscura activa" aria-label="Bienvenida">
+    <video id="video-intro" src="assets/video/intro.mp4" muted playsinline preload="auto"></video>
+    <div class="bienvenida-final" id="bienvenida-final">
+      <div id="bienvenida-dinerito"></div>
+      <h1 class="titulo-grande">¡Hola! Soy Dinerito</h1>
+      <p class="texto-claro">Te voy a enseñar a ganar, guardar y hacer crecer tu dinero.</p>
+      <button class="boton boton-principal" id="btn-empezar">Empezar</button>
+    </div>
+    <button class="boton-saltar" id="btn-saltar">Saltar</button>
+  </section>
+
+  <!-- Registro del niño -->
+  <section id="pantalla-registro" class="pantalla" aria-label="Crear perfil">
+    <div class="contenedor">
+      <div class="registro-cabeza">
+        <img src="assets/img/logo-hp.png" alt="Hijos Prósperos" class="logo-chico">
+      </div>
+      <h1 class="titulo">Crea el perfil de tu hijo</h1>
+      <p class="nota">Esta parte la llena papá o mamá.</p>
+      <form id="form-registro" class="formulario" novalidate>
+        <label class="campo">
+          <span>Nombre del niño o la niña</span>
+          <input type="text" id="input-nombre" maxlength="20" autocomplete="off" required>
+        </label>
+        <fieldset class="campo">
+          <legend>Edad</legend>
+          <div class="opciones-edad">
+            <label class="opcion-edad"><input type="radio" name="edad" value="chico" required><span><strong>5 a 7 años</strong><small>Más dibujos y voz</small></span></label>
+            <label class="opcion-edad"><input type="radio" name="edad" value="grande"><span><strong>8 a 13 años</strong><small>Con números y retos</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="campo">
+          <legend>Color de su moneda</legend>
+          <div class="opciones-avatar" id="opciones-avatar"></div>
+        </fieldset>
+        <p class="error" id="error-registro" role="alert"></p>
+        <button class="boton boton-principal boton-ancho" type="submit">Crear perfil</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Mapa de la isla -->
+  <section id="pantalla-mapa" class="pantalla pantalla-mapa" aria-label="Mapa">
+    <header class="barra">
+      <button class="barra-perfil" id="btn-perfil" aria-label="Ver mis insignias">
+        <span class="avatar" id="barra-avatar"></span>
+        <span id="barra-nombre"></span>
+      </button>
+      <div class="barra-datos">
+        <span class="dato" title="Racha de días"><svg viewBox="0 0 24 24" class="icono-llama" aria-hidden="true"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4-1-6 1-9z"/></svg><span id="barra-racha">0</span></span>
+        <span class="dato" title="Monedas"><span class="moneda-mini" aria-hidden="true"></span><span id="barra-monedas">0</span></span>
+      </div>
+    </header>
+    <div class="meta-barra" id="meta-barra" hidden>
+      <span id="meta-texto"></span>
+      <div class="progreso"><div class="progreso-lleno" id="meta-progreso"></div></div>
+    </div>
+    <div class="mapa" id="mapa"></div>
+    <button class="boton-padres" id="btn-padres">Papá y mamá</button>
+  </section>
+
+  <!-- Misión del día -->
+  <section id="pantalla-mision" class="pantalla" aria-label="Misión">
+    <header class="mision-cabeza">
+      <button class="boton-cerrar" id="btn-cerrar-mision" aria-label="Volver al mapa">✕</button>
+      <div class="progreso progreso-mision"><div class="progreso-lleno" id="mision-progreso"></div></div>
+    </header>
+    <div class="contenedor mision-cuerpo" id="mision-cuerpo"></div>
+  </section>
+
+  <!-- Insignias -->
+  <section id="pantalla-insignias" class="pantalla" aria-label="Mis insignias">
+    <header class="mision-cabeza">
+      <button class="boton-cerrar" data-volver="mapa" aria-label="Volver al mapa">✕</button>
+      <h1 class="titulo-barra">Mis insignias</h1>
+    </header>
+    <div class="contenedor" id="lista-insignias"></div>
+  </section>
+
+  <!-- Fin de los 7 días -->
+  <section id="pantalla-fin" class="pantalla pantalla-oscura" aria-label="Terminaste la prueba">
+    <div class="contenedor fin-cuerpo" id="fin-cuerpo"></div>
+  </section>
+
+  <!-- Panel de papá y mamá -->
+  <section id="pantalla-padres" class="pantalla" aria-label="Panel de papá y mamá">
+    <header class="mision-cabeza">
+      <button class="boton-cerrar" data-volver="mapa" aria-label="Volver al mapa">✕</button>
+      <h1 class="titulo-barra">Papá y mamá</h1>
+    </header>
+    <div class="contenedor" id="padres-cuerpo"></div>
+  </section>
+
+  <!-- Premio (ventana sobre la pantalla) -->
+  <div class="premio" id="premio" hidden role="dialog" aria-modal="true" aria-labelledby="premio-titulo">
+    <div class="premio-caja">
+      <div class="lluvia" id="lluvia" aria-hidden="true"></div>
+      <div id="premio-dinerito"></div>
+      <h2 class="titulo" id="premio-titulo">¡Misión cumplida!</h2>
+      <p class="premio-monedas" id="premio-monedas"></p>
+      <div id="premio-insignia"></div>
+      <button class="boton boton-principal boton-ancho" id="btn-premio">Volver al mapa</button>
+    </div>
+  </div>
+
+  <script src="js/dinerito.js"></script>
+  <script src="js/contenido.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
