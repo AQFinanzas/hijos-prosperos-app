@@ -4,6 +4,8 @@ Lo que se decidió, cuándo y por qué. Lo más reciente va arriba.
 
 ## 23 de octubre de 2026
 
+- **Todos los cobros de la membresía son automáticos.** No habrá pagos manuales (Pago Móvil, Zelle, Binance por transferencia). Se arranca con Hotmart: plan de suscripción con 7 días de prueba gratis y cobro automático con tarjeta o PayPal. En Venezuela entra quien tenga PayPal o tarjeta internacional (crédito, débito o tarjeta virtual en dólares). Stripe se evalúa cuando haya volumen, porque pide una empresa en EE. UU.
+
 - **Sin video de intro.** La app abre directo con Dinerito animado e interactivo.
 
 - **El registro pide los datos de papá o mamá** (nombre, correo y WhatsApp opcional) antes del perfil del niño. Sirve para tener la lista de familias y para pedir la autorización de un adulto.
