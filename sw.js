@@ -1,6 +1,6 @@
 /* Guarda la app en el celular para que abra rápido y funcione sin internet.
    Cada vez que se publique un cambio, subir el número de VERSION. */
-const VERSION = "hp-v2";
+const VERSION = "hp-v3";
 const ARCHIVOS = [
   "./", "index.html", "css/app.css", "js/app.js", "js/contenido.js", "js/dinerito.js",
   "manifest.webmanifest", "assets/img/logo-hp.png", "assets/img/patron-azul.png",

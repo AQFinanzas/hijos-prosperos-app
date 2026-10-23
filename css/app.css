@@ -378,6 +378,5 @@ body { background: linear-gradient(rgba(23,11,91,.93), rgba(23,11,91,.93)), url(
 }
 
 /* Dinerito sobre fondos oscuros: brazos y piernas en blanco */
-.pantalla-oscura .dinerito path[stroke="#170B5B"] { stroke: #fff; }
-.pantalla-oscura .dinerito circle[fill="#170B5B"] { fill: #fff; }
-.pantalla-oscura .dinerito rect[fill="#170B5B"] { fill: var(--navy); }
+.pantalla-oscura .dinerito path.extremidad { stroke: #fff; }
+.pantalla-oscura .dinerito circle.extremidad { fill: #fff; }

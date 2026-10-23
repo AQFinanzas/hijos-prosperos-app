@@ -16,26 +16,26 @@ function dinerito(pose = "feliz", tam = 160) {
   const c = DINERITO_COLORES;
   const brazos = {
     feliz: `
-      <path d="M30 120 q-10 6 -13 18" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <path d="M170 120 q10 6 13 18" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="17" cy="138" r="8" fill="${c.navy}"/><circle cx="183" cy="138" r="8" fill="${c.navy}"/>`,
+      <path d="M30 120 q-10 6 -13 18" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M170 120 q10 6 13 18" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle class="extremidad" cx="17" cy="138" r="8" fill="${c.navy}"/><circle class="extremidad" cx="183" cy="138" r="8" fill="${c.navy}"/>`,
     celebrando: `
-      <path d="M32 86 q-10 -14 -12 -40" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <path d="M168 86 q10 -14 12 -40" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="20" cy="46" r="8" fill="${c.navy}"/><circle cx="180" cy="46" r="8" fill="${c.navy}"/>
+      <path d="M32 86 q-10 -14 -12 -40" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M168 86 q10 -14 12 -40" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle class="extremidad" cx="20" cy="46" r="8" fill="${c.navy}"/><circle class="extremidad" cx="180" cy="46" r="8" fill="${c.navy}"/>
       <g fill="${c.borde}"><path d="M14 18 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4z"/><path d="M186 12 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3z"/></g>
       <g fill="${c.cielo}"><circle cx="40" cy="20" r="4"/><circle cx="164" cy="28" r="4"/></g>`,
     pensando: `
-      <path d="M30 120 q-10 6 -13 18" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="17" cy="138" r="8" fill="${c.navy}"/>
-      <path d="M164 132 q-10 18 -38 12" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="124" cy="142" r="9" fill="${c.navy}"/>
+      <path d="M30 120 q-10 6 -13 18" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle class="extremidad" cx="17" cy="138" r="8" fill="${c.navy}"/>
+      <path d="M164 132 q-10 18 -38 12" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle class="extremidad" cx="124" cy="142" r="9" fill="${c.navy}"/>
       <g fill="${c.cielo}"><circle cx="176" cy="40" r="6"/><circle cx="188" cy="22" r="9"/></g>`,
     saludando: `
-      <path d="M30 120 q-10 6 -13 18" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <circle cx="17" cy="138" r="8" fill="${c.navy}"/>
-      <path d="M170 100 q12 -10 8 -48" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
-      <g class="dinerito-mano"><circle cx="178" cy="52" r="9" fill="${c.navy}"/></g>`,
+      <path d="M30 120 q-10 6 -13 18" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <circle class="extremidad" cx="17" cy="138" r="8" fill="${c.navy}"/>
+      <path d="M170 100 q12 -10 8 -48" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <g class="dinerito-mano"><circle class="extremidad" cx="178" cy="52" r="9" fill="${c.navy}"/></g>`,
   }[pose] || "";
 
   const ojos =
@@ -57,8 +57,8 @@ function dinerito(pose = "feliz", tam = 160) {
 
   return `
   <svg class="dinerito dinerito-${pose}" width="${tam}" height="${tam * 1.1}" viewBox="0 0 200 220" role="img" aria-label="Dinerito">
-    <path d="M78 176 v22 h-12" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M122 176 v22 h12" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M78 176 v22 h-12" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M122 176 v22 h12" class="extremidad" stroke="${c.navy}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="100" cy="104" r="76" fill="${c.borde}"/>
     <circle cx="100" cy="104" r="68" fill="${c.oro}"/>
     <circle cx="100" cy="104" r="58" fill="none" stroke="${c.oroOscuro}" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round"/>

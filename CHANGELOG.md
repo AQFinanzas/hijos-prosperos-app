@@ -4,7 +4,7 @@ Cada cambio va arriba, con la fecha, qué se hizo y para qué.
 
 ## 2026-10-23 — Versión 2
 
-- Dinerito se ve completo sobre fondos oscuros (brazos y piernas en blanco).
+- Dinerito se ve completo sobre fondos oscuros: solo brazos y piernas pasan a blanco, la cara queda igual.
 
 ## 2026-10-23 — Versión 1 (prototipo)
 
